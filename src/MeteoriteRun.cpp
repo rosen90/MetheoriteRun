@@ -3,7 +3,8 @@
 #include "../Managers/DrawManager.h"
 #include "../Managers/EventManager.h"
 #include "../Managers/MovableManager.h"
-#include "../GameObjects/BaseGameObject.h"
+#include "../Managers/CollisionManager.h"
+#include "../GameObjects/Background.h"
 #include "../GameObjects/Character.h"
 #include "../GameObjects/FallingObject.h"
 
@@ -18,13 +19,15 @@ int main()
 	man->AddClient(new MovableManager());
 	man->AddClient(new EventManager());
 	man->AddClient(new DrawManager());
+	man->AddClient(new CollisionManager());
 
-	BaseGameObject background(0, 0, DrawManager::SCREEN_WIDTH, DrawManager::SCREEN_HEIGHT, "Data/Images/background.png");
+	vector<void*> obj;
 
-	Character player(10, 450, 5);
-	FallingObject obj = FallingObject(200, 10, 10);
-	FallingObject obj1 = FallingObject(150, 5, 12);
-	FallingObject obj2 = FallingObject(700, -4, 10);
+	obj.push_back(new Background());
+	obj.push_back(new Character(10, 450, 5));
+	obj.push_back(new FallingObject(200, 1, 2));
+	obj.push_back(new FallingObject(300, 2, 3));
+	obj.push_back(new FallingObject(700, -4, 10));
 
 	while(man->Process())
 	{

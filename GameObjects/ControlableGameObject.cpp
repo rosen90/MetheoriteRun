@@ -14,6 +14,7 @@ namespace GameObjects {
 
 	ControlableGameObject::~ControlableGameObject()
 	{
+		Managers::BossManager::GetManager<Contracts::IControlable*>()->RemoveClient(this);
 	}
 
 	void ControlableGameObject::Move(){

@@ -4,7 +4,7 @@
 namespace GameObjects {
 
 	BaseGameObject::BaseGameObject(int x, int y, int w, int h, std::string path)
-		: StaticObject(x, y, w, h), Drawable(path)
+		:  ContractImplementations::Drawable(path), ContractImplementations::StaticObject(x, y, w, h)
 	{
 		SetSource(0, 0, w ,h);
 	}

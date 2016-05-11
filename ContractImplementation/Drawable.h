@@ -21,7 +21,7 @@ namespace ContractImplementations {
 	protected:
 		SDL_Texture* texture;
 		SDL_Rect source;
-		const std::string loadPath;
+		std::string loadPath;
 
 		void Free();
 	};

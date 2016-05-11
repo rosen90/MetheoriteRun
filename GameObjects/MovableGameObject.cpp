@@ -11,6 +11,7 @@ namespace GameObjects {
 
 	MovableGameObject::~MovableGameObject()
 	{
+		Managers::BossManager::GetManager<Contracts::IMovable*>()->RemoveClient(this);
 	}
 
 	void MovableGameObject::Move()

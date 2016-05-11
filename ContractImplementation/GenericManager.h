@@ -1,6 +1,9 @@
 #pragma once
 #include "../Contracts/IGenericManager.h"
 #include <vector>
+#include <algorithm>
+
+using std::vector;
 
 namespace ContractImplementations {
 	template<class T>
@@ -11,12 +14,11 @@ namespace ContractImplementations {
 		GenericManager();
 		virtual ~GenericManager();
 		virtual void AddClient(T client) override;
+		virtual void RemoveClient(T client) override;
 
 	protected:
-		std::vector<T> clients;
+		vector<T> clients;
 	};
 
 #include "GenericManager.hpp"
 }
-
-

@@ -6,8 +6,9 @@
 
 namespace ContractImplementations {
 	Drawable::Drawable(std::string path)
-		: IDrawable(), loadPath(path)
+		: Contracts::IDrawable()
 	{
+		loadPath = path;
 		SetSource(0, 0, 0, 0);
 		Managers::BossManager::GetManager<Contracts::IDrawable*>()->AddClient(this);
 	}
@@ -15,6 +16,7 @@ namespace ContractImplementations {
 	Drawable::~Drawable()
 	{
 		Free();
+		Managers::BossManager::GetManager<Contracts::IDrawable*>()->RemoveClient(this);
 	}
 
 	void Drawable::Draw(SDL_Renderer * renderer)

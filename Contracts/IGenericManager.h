@@ -9,5 +9,6 @@ namespace Contracts {
 	{
 	public:
 		virtual void AddClient(T client) = 0;
+		virtual void RemoveClient(T client) = 0;
 	};
 }

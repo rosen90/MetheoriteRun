@@ -20,7 +20,10 @@ bool MovableManager::Process()
 {
 	for (Contracts::IMovable* client : clients)
 	{
-		client->Move();
+		if(client != NULL)
+		{
+			client->Move();
+		}
 	}
 
 	return true;

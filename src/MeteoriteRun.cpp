@@ -16,15 +16,15 @@ using namespace GameObjects;
 int main()
 {
 	BossManager* man = BossManager::GetInstance();
-	man->AddClient(new MovableManager());
 	man->AddClient(new EventManager());
 	man->AddClient(new DrawManager());
 	man->AddClient(new CollisionManager());
+	man->AddClient(new MovableManager());
 
 	vector<void*> obj;
 
 	obj.push_back(new Background());
-	obj.push_back(new Character(10, 450, 5));
+	obj.push_back(new Character(10, 600, 5));
 	obj.push_back(new FallingObject(200, 1, 2));
 	obj.push_back(new FallingObject(300, 2, 3));
 	obj.push_back(new FallingObject(700, -4, 10));

@@ -18,6 +18,8 @@ public:
 	virtual ~Background();
 
 	virtual bool CheckCollision(IColidable* other) override;
+	virtual void Draw(SDL_Renderer* renderer) override;
+	virtual void Collide(IColidable* other) override;
 };
 
 } /* namespace GameObjects */

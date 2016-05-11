@@ -63,6 +63,7 @@ void FallingObject::Draw(SDL_Renderer* renderer)
 
 void FallingObject::OnDestroy() {
 	dying = true;
+	SetPower(0);
 	SetVelocityX(0);
 	SetVelocityY(0);
 }

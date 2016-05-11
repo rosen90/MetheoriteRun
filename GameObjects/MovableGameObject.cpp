@@ -7,6 +7,7 @@ namespace GameObjects {
 		: Contracts::IMovable(), BaseGameObject(x, y, w, h, health, power, path), velocityX(vX), velocityY(vY)
 	{
 		Managers::BossManager::GetManager<Contracts::IMovable*>()->AddClient(this);
+		currentDir = eNone;
 	}
 
 	MovableGameObject::~MovableGameObject()
@@ -38,5 +39,9 @@ namespace GameObjects {
 	void MovableGameObject::SetVelocityY(int velocityY)
 	{
 		this->velocityY = velocityY;
+	}
+
+	Direction MovableGameObject::GetDirection() {
+		return currentDir;
 	}
 }

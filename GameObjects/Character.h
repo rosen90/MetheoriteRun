@@ -18,6 +18,8 @@ private:
 	static const int CHARACTER_ANIMATION;
 	static const int CLIP_HEIGHT;
 	static const int CLIP_WIDTH;
+	static const int CHAR_HEALTH;
+	static const int CHAR_POWER;
 	static const std::string LOAD_PATH;
 
 	int m_currentSprite;

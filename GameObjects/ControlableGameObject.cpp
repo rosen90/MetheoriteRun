@@ -36,7 +36,6 @@ namespace GameObjects {
 
 		MovableGameObject::Move();
 	}
-
 	void ControlableGameObject::HandleKey(SDL_Event * e)
 	{
 		currentDir = eNone;
@@ -54,5 +53,15 @@ namespace GameObjects {
 		default:
 			break;
 		}
+	}
+
+	int ControlableGameObject::GetInitialVX()
+	{
+		return initialVX;
+	}
+
+	void ControlableGameObject::Stop()
+	{
+		currentDir = eNone;
 	}
 }

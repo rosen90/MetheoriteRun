@@ -4,16 +4,6 @@
 
 namespace GameObjects {
 
-
-	enum Direction {
-		eRight,
-		eLeft,
-		eUp,
-		eUpLeft,
-		eUpRight,
-		eNone
-	};
-
 	class ControlableGameObject :
 		public Contracts::IControlable,
 		public MovableGameObject
@@ -24,9 +14,12 @@ namespace GameObjects {
 
 		virtual void HandleKey(SDL_Event * e) override;
 		virtual void Move() override;
-	protected:
 
+		int GetInitialVX();
+
+		void Stop();
+
+	protected:
 		const int initialVX, initialVY;
-		Direction currentDir;
 	};
 }

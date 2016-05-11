@@ -103,16 +103,7 @@ namespace ContractImplementations {
 		int bottom2 = other->GetY() + other->GetH();
 
 		// Check edges
-		if ( left1 > right2 )// Left 1 is right of right 2
-			return false; // No collision
-
-		if ( right1 < left2 ) // Right 1 is left of left 2
-			return false; // No collision
-
-		if ( top1 > bottom2 ) // Top 1 is below bottom 2
-			return false; // No collision
-
-		if ( bottom1 < top2 ) // Bottom 1 is above top 2
+		if ( left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2 ) // Bottom 1 is above top 2
 			return false; // No collision
 
 		return true;

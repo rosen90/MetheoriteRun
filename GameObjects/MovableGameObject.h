@@ -3,6 +3,16 @@
 #include "BaseGameObject.h"
 
 namespace GameObjects {
+
+	enum Direction {
+		eRight,
+		eLeft,
+		eUp,
+		eUpLeft,
+		eUpRight,
+		eNone
+	};
+
 	class MovableGameObject :
 		public Contracts::IMovable, public BaseGameObject
 	{
@@ -16,8 +26,10 @@ namespace GameObjects {
 		virtual int GetVelocityY() override;
 		virtual void SetVelocityX(int) override;
 		virtual void SetVelocityY(int) override;
+		Direction GetDirection();
 
 	protected:
 		int velocityX, velocityY;
+		Direction currentDir;
 	};
 }

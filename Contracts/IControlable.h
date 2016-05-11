@@ -1,11 +1,12 @@
 #pragma once
-#include "SDL2/SDL_keycode.h"
+
+union SDL_Event;
 
 namespace Contracts
 {
 	class IControlable
 	{
 	public:
-		virtual void HandleKey(SDL_Keycode e) = 0;
+		virtual void HandleKey(SDL_Event * e) = 0;
 	};
 }

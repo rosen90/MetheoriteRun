@@ -6,6 +6,7 @@ namespace GameObjects {
 	BaseGameObject::BaseGameObject(int x, int y, int w, int h, std::string path)
 		: StaticObject(x, y, w, h), Drawable(path)
 	{
+		SetSource(0, 0, w ,h);
 	}
 
 	BaseGameObject::~BaseGameObject()

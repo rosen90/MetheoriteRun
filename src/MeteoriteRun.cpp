@@ -14,13 +14,13 @@ using namespace GameObjects;
 int main()
 {
 	BossManager* man = BossManager::GetInstance();
-	man->AddClient(new DrawManager());
-	man->AddClient(new EventManager());
 	man->AddClient(new MovableManager());
+	man->AddClient(new EventManager());
+	man->AddClient(new DrawManager());
 
 	BaseGameObject background(0, 0, DrawManager::SCREEN_WIDTH, DrawManager::SCREEN_HEIGHT, "Data/Images/background.png");
 
-	Character player(10, 450, 15);
+	Character player(10, 450, 1);
 
 	while(man->Process())
 	{

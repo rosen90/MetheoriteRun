@@ -8,11 +8,11 @@ using namespace GameObjects;
 class Character : public ControlableGameObject
 {
 public:
-	Character(int initialPosX = 0, int initialPosY = 0, int = 10);
+	Character(int initialPosX = 0, int initialPosY = 0, int = 1, int = 1);
 	virtual ~Character();
 
-	virtual void Draw(SDL_Renderer* renderer);
-	virtual void Move();
+	virtual void Draw(SDL_Renderer* renderer) override;
+	virtual void Move() override;
 
 private:
 	static const int CHARACTER_ANIMATION;
@@ -21,6 +21,7 @@ private:
 	static const std::string LOAD_PATH;
 
 	int m_currentSprite;
+	int jumpFrame;
 };
 
 #endif /* CHARACTER_H_ */

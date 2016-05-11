@@ -1,13 +1,13 @@
 #include "ControlableGameObject.h"
 #include "../Managers/BossManager.h"
+#include <SDL2/SDL_events.h>
 
 namespace GameObjects {
 	ControlableGameObject::ControlableGameObject(int x, int y, int w, int h, int vX, int vY, std::string path)
 		: Contracts::IControlable(), MovableGameObject(x, y, w, h, vY, vY, path)
 		, initialVX(vX), initialVY(vY)
 	{
-		moveAllowed = false;
-		currentDir = eRight;
+		currentDir = eNone;
 		Managers::BossManager::GetManager<Contracts::IControlable*>()->AddClient(this);
 	}
 
@@ -16,43 +16,42 @@ namespace GameObjects {
 	{
 	}
 
-	void ControlableGameObject::HandleKey(SDL_Keycode e)
+	void ControlableGameObject::Move(){
+		switch (currentDir) {
+			case eLeft:
+				SetVelocityX(-initialVX);
+				break;
+			case eRight:
+				SetVelocityX(initialVX);
+				break;
+			case eUp:
+				SetVelocityY(-initialVY);
+				break;
+			default:
+				SetVelocityX(0);
+				SetVelocityY(0);
+				break;
+		}
+
+		MovableGameObject::Move();
+	}
+
+	void ControlableGameObject::HandleKey(SDL_Event * e)
 	{
-		switch (e)
+		currentDir = eNone;
+		switch (e->key.keysym.sym)
 		{
 		case SDLK_UP:
-			if(!moveAllowed)
-			{
-				currentDir = eUp;
-				moveAllowed = true;
-			}
+				currentDir = (e->type == SDL_KEYDOWN ? eUp : eNone);
 			break;
 		case SDLK_LEFT:
-			if(!moveAllowed)
-			{
-				SetVelocityX(-initialVX);
-				currentDir = eLeft;
-				moveAllowed = true;
-			}
+				currentDir = (e->type == SDL_KEYDOWN ? eLeft : eNone);
 			break;
 		case SDLK_RIGHT:
-			if(!moveAllowed)
-			{
-				moveAllowed = true;
-				currentDir = eRight;
-				SetVelocityX(initialVX);
-			}
+				currentDir = (e->type == SDL_KEYDOWN ? eRight : eNone);
 			break;
 		default:
 			break;
 		}
-	}
-
-	void ControlableGameObject::Move()
-	{
-		if (moveAllowed)
-			MovableGameObject::Move();
-
-		moveAllowed = false;
 	}
 }

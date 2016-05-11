@@ -22,11 +22,11 @@ namespace Managers {
 			if (e.type == SDL_QUIT)
 				return false;
 
-			if (e.type == SDL_KEYDOWN)
+			if(e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
 			{
 				for(Contracts::IControlable* controlable : clients)
 				{
-					controlable->HandleKey(e.key.keysym.sym);
+					controlable->HandleKey(&e);
 				}
 			}
 		}

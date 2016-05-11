@@ -13,7 +13,7 @@ namespace GameObjects
 const std::string FallingObject::LOAD_PATH = "Data/Images/fallingObjects.png";
 
 FallingObject::FallingObject(int posX, int velX, int velY)
-	: MovableGameObject(posX, 0, CLIP_SIZE, CLIP_SIZE, velX, velY, LOAD_PATH)
+	: MovableGameObject(posX, 0, CLIP_SIZE, CLIP_SIZE, velX, velY, 1, 1, LOAD_PATH)
 {
 	m_currentSprite = 0;
 }

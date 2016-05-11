@@ -3,8 +3,8 @@
 #include <SDL2/SDL_events.h>
 
 namespace GameObjects {
-	ControlableGameObject::ControlableGameObject(int x, int y, int w, int h, int vX, int vY, std::string path)
-		: Contracts::IControlable(), MovableGameObject(x, y, w, h, vY, vY, path)
+	ControlableGameObject::ControlableGameObject(int x, int y, int w, int h, int vX, int vY, int health, int power, std::string path)
+		: Contracts::IControlable(), MovableGameObject(x, y, w, h, vY, vY, health, power, path)
 		, initialVX(vX), initialVY(vY)
 	{
 		currentDir = eNone;

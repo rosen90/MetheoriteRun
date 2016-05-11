@@ -10,7 +10,7 @@ const int Character::CLIP_WIDTH = 108;
 const std::string Character::LOAD_PATH = "Data/Images/playerSprite.png";
 
 Character::Character(int initialPosX, int initialPosY, int velX, int velY)
-	: ControlableGameObject( initialPosX, initialPosY, CLIP_WIDTH, CLIP_HEIGHT , velX, velY, LOAD_PATH)
+	: ControlableGameObject( initialPosX, initialPosY, CLIP_WIDTH, CLIP_HEIGHT , velX, velY, 100, 1, LOAD_PATH)
 {
 	m_currentSprite = 0;
 	jumpFrame = 0;

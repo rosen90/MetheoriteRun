@@ -11,7 +11,8 @@
 namespace GameObjects {
 
 Background::Background()
-	:BaseGameObject(0, 0, Managers::DrawManager::SCREEN_WIDTH, Managers::DrawManager::SCREEN_HEIGHT, "Data/Images/background.png")
+	:BaseGameObject(0, 0, Managers::DrawManager::SCREEN_WIDTH,
+			Managers::DrawManager::SCREEN_HEIGHT, INFINITY, 0, "Data/Images/background.png")
 {
 	// TODO Auto-generated constructor stub
 

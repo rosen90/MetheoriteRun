@@ -3,8 +3,8 @@
 
 namespace GameObjects {
 
-	MovableGameObject::MovableGameObject(int x, int y, int w, int h, int vX, int vY, std::string path)
-		: Contracts::IMovable(), BaseGameObject(x, y, w, h, path), velocityX(vX), velocityY(vY)
+	MovableGameObject::MovableGameObject(int x, int y, int w, int h, int vX, int vY, int health, int power, std::string path)
+		: Contracts::IMovable(), BaseGameObject(x, y, w, h, health, power, path), velocityX(vX), velocityY(vY)
 	{
 		Managers::BossManager::GetManager<Contracts::IMovable*>()->AddClient(this);
 	}

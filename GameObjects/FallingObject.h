@@ -18,8 +18,8 @@ class FallingObject : public MovableGameObject
 public:
 	FallingObject(int posX = 0, int velX = 0, int velY = 0);
 	virtual ~FallingObject();
-	virtual void Move();
 	virtual void Draw(SDL_Renderer* renderer);
+	virtual void OnDestroy() override;
 
 private:
 	static const int MAX_SPRITE_COUNT = 15;
@@ -30,6 +30,7 @@ private:
 	int m_currentSprite;
 
 	unsigned m_currentFrame;
+	bool dying;
 };
 
 }

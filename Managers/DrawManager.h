@@ -19,8 +19,8 @@ namespace Managers {
 		virtual bool Process() override;
 		virtual void AddClient(Contracts::IDrawable* client) override;
 
-		static const int SCREEN_WIDTH = 1280;
-		static const int SCREEN_HEIGHT = 640;
+		static const int SCREEN_WIDTH = 1020;
+		static const int SCREEN_HEIGHT = 768;
 	private:
 		void InitSDL();
 		void QuitSDL();

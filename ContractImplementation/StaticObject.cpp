@@ -1,17 +1,20 @@
 #include "StaticObject.h"
-#include "../Managers/BossManager.h"
+#include "../GameObjects/World.h"
+#include "../GameObjects/World.h"
 
 namespace ContractImplementations {
 
-	StaticObject::StaticObject(int x, int y, int width, int height, int h, int p)
+	StaticObject::StaticObject(GameObjects::World* word,
+			int x, int y, int width, int height, int h, int p)
 		: Contracts::IColidable(), x(x), y(y), width(width), height(height), health(h), power(p)
 	{
-		Managers::BossManager::GetManager<Contracts::IColidable*>()->AddClient(this);
+		if(word)
+			word->GetManager<Contracts::IColidable*>()->AddClient(this);
 	}
 
 	StaticObject::~StaticObject()
 	{
-		Managers::BossManager::GetManager<Contracts::IColidable*>()->RemoveClient(this);
+		GameObjects::World::GetInstance()->GetManager<Contracts::IColidable*>()->RemoveClient(this);
 	}
 
 	int StaticObject::GetX()

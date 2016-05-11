@@ -5,12 +5,16 @@
 
 struct SDL_Texture;
 
+namespace GameObjects{
+	class World;
+}
+
 namespace ContractImplementations {
 	class Drawable :
 		public Contracts::IDrawable
 	{
 	public:
-		Drawable(std::string path = "");
+		Drawable(GameObjects::World* = NULL, std::string path = "");
 		virtual ~Drawable();
 
 		// Inherited via IDrawable

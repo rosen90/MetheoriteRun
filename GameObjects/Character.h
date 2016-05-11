@@ -8,7 +8,7 @@ using namespace GameObjects;
 class Character : public ControlableGameObject
 {
 public:
-	Character(int initialPosX = 0, int initialPosY = 0, int = 1, int = 1);
+	Character(World* world = NULL, int initialPosX = 0, int initialPosY = 0, int = 1, int = 1);
 	virtual ~Character();
 
 	virtual void Draw(SDL_Renderer* renderer) override;

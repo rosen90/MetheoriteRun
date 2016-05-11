@@ -1,11 +1,16 @@
 #pragma once
 #include "../Contracts/IColidable.h"
+
+namespace GameObjects{
+	class World;
+}
 namespace ContractImplementations {
 	class StaticObject :
 		public Contracts::IColidable
 	{
 	public:
-		StaticObject(int x= 0, int y= 0, int w= 0, int h= 0, int health = 0, int power = 0);
+		StaticObject(GameObjects::World* word = 0,
+				int x= 0, int y= 0, int w= 0, int h= 0, int health = 0, int power = 0);
 		virtual ~StaticObject();
 
 		virtual int GetX() override;

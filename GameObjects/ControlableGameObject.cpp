@@ -1,20 +1,21 @@
 #include "ControlableGameObject.h"
-#include "../Managers/BossManager.h"
+#include "World.h"
 #include <SDL2/SDL_events.h>
 
 namespace GameObjects {
-	ControlableGameObject::ControlableGameObject(int x, int y, int w, int h, int vX, int vY, int health, int power, std::string path)
-		: Contracts::IControlable(), MovableGameObject(x, y, w, h, vY, vY, health, power, path)
+	ControlableGameObject::ControlableGameObject(World* world, int x, int y, int w, int h, int vX, int vY, int health, int power, std::string path)
+		: Contracts::IControlable(), MovableGameObject(world, x, y, w, h, vY, vY, health, power, path)
 		, initialVX(vX), initialVY(vY)
 	{
 		currentDir = eNone;
-		Managers::BossManager::GetManager<Contracts::IControlable*>()->AddClient(this);
+		if(world)
+			world->GetManager<Contracts::IControlable*>()->AddClient(this);
 	}
 
 
 	ControlableGameObject::~ControlableGameObject()
 	{
-		Managers::BossManager::GetManager<Contracts::IControlable*>()->RemoveClient(this);
+		World::GetInstance()->GetManager<Contracts::IControlable*>()->RemoveClient(this);
 	}
 
 	void ControlableGameObject::Move(){

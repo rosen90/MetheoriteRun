@@ -11,8 +11,8 @@ const int Character::CHAR_POWER = 1;
 
 const std::string Character::LOAD_PATH = "Data/Images/playerSprite.png";
 
-Character::Character(int initialPosX, int initialPosY, int velX, int velY)
-	: ControlableGameObject( initialPosX, initialPosY, CLIP_WIDTH,
+Character::Character(World* world, int initialPosX, int initialPosY, int velX, int velY)
+	: ControlableGameObject(world, initialPosX, initialPosY, CLIP_WIDTH,
 			CLIP_HEIGHT , velX, velY, CHAR_HEALTH, CHAR_POWER, LOAD_PATH)
 {
 	m_currentSprite = 0;

@@ -3,8 +3,8 @@
 
 namespace GameObjects {
 
-	BaseGameObject::BaseGameObject(int x, int y, int w, int h, int health, int power, std::string path)
-		:  ContractImplementations::Drawable(path), ContractImplementations::StaticObject(x, y, w, h, health, power)
+	BaseGameObject::BaseGameObject(World* world ,int x, int y, int w, int h, int health, int power, std::string path)
+		:  ContractImplementations::Drawable(world, path), ContractImplementations::StaticObject(world, x, y, w, h, health, power)
 	{
 		SetSource(0, 0, w ,h);
 	}

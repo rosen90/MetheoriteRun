@@ -1,18 +1,19 @@
 #include "MovableGameObject.h"
-#include "../Managers/BossManager.h"
+#include "World.h"
 
 namespace GameObjects {
 
-	MovableGameObject::MovableGameObject(int x, int y, int w, int h, int vX, int vY, int health, int power, std::string path)
-		: Contracts::IMovable(), BaseGameObject(x, y, w, h, health, power, path), velocityX(vX), velocityY(vY)
+	MovableGameObject::MovableGameObject(World* world, int x, int y, int w, int h, int vX, int vY, int health, int power, std::string path)
+		: Contracts::IMovable(), BaseGameObject(world, x, y, w, h, health, power, path), velocityX(vX), velocityY(vY)
 	{
-		Managers::BossManager::GetManager<Contracts::IMovable*>()->AddClient(this);
 		currentDir = eNone;
+		if(world)
+			world->GetManager<Contracts::IMovable*>()->AddClient(this);
 	}
 
 	MovableGameObject::~MovableGameObject()
 	{
-		Managers::BossManager::GetManager<Contracts::IMovable*>()->RemoveClient(this);
+		World::GetInstance()->GetManager<Contracts::IMovable*>()->RemoveClient(this);
 	}
 
 	void MovableGameObject::Move()

@@ -16,7 +16,7 @@ namespace GameObjects
 class FallingObject : public MovableGameObject
 {
 public:
-	FallingObject(int posX = 0, int velX = 0, int velY = 0);
+	FallingObject(World* world = NULL, int posX = 0, int velX = 0, int velY = 0);
 	virtual ~FallingObject();
 	virtual void Draw(SDL_Renderer* renderer);
 	virtual void OnDestroy() override;

@@ -1,22 +1,23 @@
 #include "Drawable.h"
-#include "../Managers/BossManager.h"
+#include "../GameObjects/World.h"
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
 namespace ContractImplementations {
-	Drawable::Drawable(std::string path)
+	Drawable::Drawable(GameObjects::World* world, std::string path)
 		: Contracts::IDrawable()
 	{
 		loadPath = path;
 		SetSource(0, 0, 0, 0);
-		Managers::BossManager::GetManager<Contracts::IDrawable*>()->AddClient(this);
+		if(world)
+			world->GetManager<Contracts::IDrawable*>()->AddClient(this);
 	}
 
 	Drawable::~Drawable()
 	{
 		Free();
-		Managers::BossManager::GetManager<Contracts::IDrawable*>()->RemoveClient(this);
+		GameObjects::World::GetInstance()->GetManager<Contracts::IDrawable*>()->RemoveClient(this);
 	}
 
 	void Drawable::Draw(SDL_Renderer * renderer)

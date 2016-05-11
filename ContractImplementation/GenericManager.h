@@ -17,7 +17,7 @@ namespace ContractImplementations {
 		virtual void RemoveClient(T client) override;
 
 	protected:
-		vector<T> clients;
+		std::vector<T> clients;
 	};
 
 #include "GenericManager.hpp"

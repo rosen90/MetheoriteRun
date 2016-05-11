@@ -28,6 +28,8 @@ private:
 	static const std::string LOAD_PATH;
 
 	int m_currentSprite;
+
+	unsigned m_currentFrame;
 };
 
 }

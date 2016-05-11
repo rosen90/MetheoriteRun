@@ -19,6 +19,8 @@ namespace Managers {
 
 	private:
 		static BossManager* Instance;
+		static const int FPS = 60;
+		unsigned currentFrame;
 	};
 
 	#include "BossManager.hpp"

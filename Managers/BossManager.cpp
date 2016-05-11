@@ -1,4 +1,5 @@
 #include "BossManager.h"
+#include <SDL2/SDL_timer.h>
 
 namespace Managers {
 
@@ -6,6 +7,7 @@ namespace Managers {
 
 	BossManager::BossManager()
 	{
+		currentFrame = SDL_GetTicks();
 	}
 
 	BossManager::~BossManager()
@@ -15,12 +17,17 @@ namespace Managers {
 
 	bool BossManager::Process()
 	{
-		for (Contracts::IManager* manager : clients)
+		if(SDL_GetTicks() - 1000/FPS >= currentFrame)
 		{
-			if (!manager->Process())
+			for (Contracts::IManager* manager : clients)
 			{
-				return false;
+				if (!manager->Process())
+				{
+					return false;
+				}
 			}
+
+			currentFrame = SDL_GetTicks();
 		}
 
 		return true;

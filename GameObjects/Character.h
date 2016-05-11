@@ -22,6 +22,9 @@ private:
 
 	int m_currentSprite;
 	int jumpFrame;
+
+	unsigned currentFrame;
+	static const int FPS = 15;
 };
 
 #endif /* CHARACTER_H_ */

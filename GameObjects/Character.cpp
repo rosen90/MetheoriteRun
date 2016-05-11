@@ -1,5 +1,7 @@
 #include "Character.h"
 #include <SDL2/SDL_events.h>
+#include <iostream>
+#include <SDL2/SDL_timer.h>
 
 const int Character::CHARACTER_ANIMATION = 8;
 const int Character::CLIP_HEIGHT = 140;
@@ -14,6 +16,8 @@ Character::Character(int initialPosX, int initialPosY, int velX, int velY)
 	jumpFrame = 0;
 	SetVelocityX(0);
 	SetVelocityY(0);
+
+	currentFrame = 0;
 }
 
 Character::~Character() {
@@ -22,15 +26,20 @@ Character::~Character() {
 
 void Character::Draw(SDL_Renderer* renderer)
 {
-	switch (currentDir) {
-		case eLeft:
-			m_currentSprite += (m_currentSprite != 0 ? -1 : CHARACTER_ANIMATION - 1);
-			break;
-		case eRight:
-			m_currentSprite += (m_currentSprite != CHARACTER_ANIMATION - 1 ? 1 : -(CHARACTER_ANIMATION-1));
-			break;
-		default:
-			break;
+	if(SDL_GetTicks() - 1000/FPS >= currentFrame)
+	{
+		switch (currentDir) {
+			case eLeft:
+				m_currentSprite += (m_currentSprite != 0 ? -1 : CHARACTER_ANIMATION - 1);
+				break;
+			case eRight:
+				m_currentSprite += (m_currentSprite != CHARACTER_ANIMATION - 1 ? 1 : -(CHARACTER_ANIMATION-1));
+				break;
+			default:
+				break;
+		}
+
+		currentFrame = SDL_GetTicks();
 	}
 
 	if(currentDir != eNone && currentDir != eUp)

@@ -4,6 +4,13 @@
 
 namespace GameObjects {
 
+
+	enum Direction {
+		eRight,
+		eLeft,
+		eUp
+	};
+
 	class ControlableGameObject :
 		public Contracts::IControlable,
 		public MovableGameObject
@@ -19,5 +26,6 @@ namespace GameObjects {
 	protected:
 		bool moveAllowed;
 		const int initialVX, initialVY;
+		Direction currentDir;
 	};
 }

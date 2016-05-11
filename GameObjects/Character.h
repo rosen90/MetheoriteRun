@@ -5,12 +5,6 @@
 
 using namespace GameObjects;
 
-enum Direction {
-	eRight,
-	eLeft,
-	eDirCount
-};
-
 class Character : public ControlableGameObject
 {
 public:
@@ -18,7 +12,7 @@ public:
 	virtual ~Character();
 
 	virtual void Draw(SDL_Renderer* renderer);
-	virtual void HandleKey(SDL_Keycode e);
+	virtual void Move();
 
 private:
 	static const int CHARACTER_ANIMATION;
@@ -26,7 +20,6 @@ private:
 	static const int CLIP_WIDTH;
 	static const std::string LOAD_PATH;
 
-	Direction m_currentDir;
 	int m_currentSprite;
 };
 

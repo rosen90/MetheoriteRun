@@ -7,6 +7,7 @@ namespace GameObjects {
 		, initialVX(vX), initialVY(vY)
 	{
 		moveAllowed = false;
+		currentDir = eRight;
 		Managers::BossManager::GetManager<Contracts::IControlable*>()->AddClient(this);
 	}
 
@@ -20,15 +21,27 @@ namespace GameObjects {
 		switch (e)
 		{
 		case SDLK_UP:
-			moveAllowed = true;
+			if(!moveAllowed)
+			{
+				currentDir = eUp;
+				moveAllowed = true;
+			}
 			break;
 		case SDLK_LEFT:
-			moveAllowed = true;
-			SetVelocityX(-initialVX);
+			if(!moveAllowed)
+			{
+				SetVelocityX(-initialVX);
+				currentDir = eLeft;
+				moveAllowed = true;
+			}
 			break;
 		case SDLK_RIGHT:
-			moveAllowed = true;
-			SetVelocityX(initialVX);
+			if(!moveAllowed)
+			{
+				moveAllowed = true;
+				currentDir = eRight;
+				SetVelocityX(initialVX);
+			}
 			break;
 		default:
 			break;

@@ -18,6 +18,6 @@ namespace GameObjects {
 		virtual void SetVelocityY(int) override;
 
 	protected:
-		int x, y, velocityX, velocityY;
+		int velocityX, velocityY;
 	};
 }

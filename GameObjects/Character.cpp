@@ -9,7 +9,6 @@ Character::Character(int initialPosX, int initialPosY, int velX)
 	: ControlableGameObject( initialPosX, initialPosY, CLIP_WIDTH, CLIP_HEIGHT , velX, 0, LOAD_PATH)
 {
 	m_currentSprite = 0;
-	m_currentDir = eRight;
 }
 
 Character::~Character() {
@@ -19,34 +18,37 @@ Character::~Character() {
 void Character::Draw(SDL_Renderer* renderer)
 {
 
+	if(currentDir != eUp)
+	{
 		SetSource(m_currentSprite * CLIP_WIDTH,
-		m_currentDir * CLIP_HEIGHT,
-		CLIP_WIDTH,
-		CLIP_HEIGHT);
+			currentDir * CLIP_HEIGHT,
+			CLIP_WIDTH,
+			CLIP_HEIGHT
+		);
+	}
 
 	ControlableGameObject::Draw(renderer);
 }
 
 
-void Character::HandleKey(SDL_Keycode e)
+void Character::Move()
 {
-
-	ControlableGameObject::HandleKey(e);
-
-	switch (e)
+	if(moveAllowed)
 	{
-//	case SDLK_UP:
-//		moveAllowed = true;
-//		break;
-	case SDLK_LEFT:
-		m_currentDir = eLeft;
-		m_currentSprite += (m_currentSprite != 0 ? -1 : CHARACTER_ANIMATION - 1);
-		break;
-	case SDLK_RIGHT:
-		m_currentDir = eRight;
-		m_currentSprite += (m_currentSprite != CHARACTER_ANIMATION - 1 ? 1 : -(CHARACTER_ANIMATION-1));
-		break;
-	default:
-		break;
+		switch (currentDir) {
+			case eUp:
+				moveAllowed = true;
+				break;
+			case eRight:
+					m_currentSprite += (m_currentSprite != CHARACTER_ANIMATION - 1 ? 1 : -(CHARACTER_ANIMATION-1));
+					ControlableGameObject::Move();
+				break;
+			case eLeft:
+					m_currentSprite += (m_currentSprite != 0 ? -1 : CHARACTER_ANIMATION - 1);
+					ControlableGameObject::Move();
+				break;
+			default:
+				break;
+		}
 	}
 }

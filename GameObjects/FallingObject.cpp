@@ -8,6 +8,7 @@
 #include "FallingObject.h"
 #include <iostream>
 #include <SDL2/SDL_timer.h>
+#include "World.h"
 
 namespace GameObjects
 {
@@ -39,14 +40,7 @@ void FallingObject::Draw(SDL_Renderer* renderer)
 				m_currentSprite = 5;
 			}
 		}
-		else
-		{
-			if( m_currentSprite == 25)
-			{
-				delete this;
-				return;
-			}
-		}
+
 
 		m_currentFrame = SDL_GetTicks();
 	}
@@ -66,6 +60,33 @@ void FallingObject::OnDestroy() {
 	SetPower(0);
 	SetVelocityX(0);
 	SetVelocityY(0);
+
+	if( m_currentSprite == 24)
+	{
+		SetX(rand() % World::GetScreenWidth());
+		SetY(0);
+		SetVelocityY(5 + rand() % 10);
+		SetVelocityX(-4);
+		SetPower(1);
+		SetHealth(1);
+		dying = false;
+		m_currentSprite = 5;
+	}
+}
+
+void FallingObject::Collide(IColidable* colide)
+{
+	FallingObject* temp = dynamic_cast<FallingObject*>(colide);
+
+	/*if(temp != NULL)
+	{
+		SetVelocityX(-GetVelocityX());
+		temp->SetVelocityX(-temp->GetVelocityX());
+	}
+	else*/ if(temp == NULL)
+	{
+		MovableGameObject::Collide(colide);
+	}
 }
 
 }

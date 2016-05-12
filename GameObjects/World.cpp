@@ -24,11 +24,11 @@ namespace GameObjects {
 World* World::Instance = 0;
 
 World::World()
-	: ControlableGameObject(NULL, 0, 0, Managers::DrawManager::SCREEN_WIDTH,
+	: MovableGameObject(NULL, 0, 0, Managers::DrawManager::SCREEN_WIDTH * 2,
 			Managers::DrawManager::SCREEN_HEIGHT, 0, 0, INFINITY, 1, "Data/Images/background.png")
 	, ContractImplementations::GenericManager<Contracts::IManager*>()
 {
-	SetSource(0, 0, Managers::DrawManager::SCREEN_WIDTH * 2, Managers::DrawManager::SCREEN_HEIGHT);
+	SetSource(0, 0, Managers::DrawManager::SCREEN_WIDTH, Managers::DrawManager::SCREEN_HEIGHT);
 	currentFrame = SDL_GetTicks();
 	AddClient<Contracts::IControlable*>(new EventManager());
 	AddClient<Contracts::IDrawable*>(new DrawManager());
@@ -57,11 +57,11 @@ bool World::CheckCollision(IColidable* other) {
 	Character* charecter = dynamic_cast<Character*>(other);
 	if(charecter != NULL)
 	{
-		return (right2 >= GetW() / 2 && charecter->GetDirection() == eRight);
+		return (right2 >= GetW() / 4 && charecter->GetDirection() == eRight);
 	}
 
 	// Check edges
-	if ( left2 >= left1 && right2 <= right1 && bottom2 <= bottom1 && top2 >= top1 ) // Bottom 1 is above top 2
+	if ( bottom2 <= bottom1 && top2 >= top1 ) // Bottom 1 is above top 2
 		return false; // No collision
 
 	return true;
@@ -83,7 +83,7 @@ void World::Collide(IColidable* other) {
 	Character* charecter = dynamic_cast<Character*>(other);
 	if(charecter != NULL)
 	{
-		SetX(GetX() - charecter->GetInitialVX());
+		SetVelocityX(-charecter->GetInitialVX());
 		charecter->Stop();
 		return;
 	}
@@ -118,8 +118,17 @@ World * World::GetInstance()
 	return Instance;
 }
 
-void World::HandleKey(SDL_Event* e) {
-
+void World::Move() {
+	MovableGameObject::Move();
+	SetVelocityX(0);
 }
 
 } /* namespace GameObjects */
+
+int World::GetScreenWidth() {
+	return DrawManager::SCREEN_WIDTH;
+}
+
+int World::GetScreenHeight() {
+	return DrawManager::SCREEN_HEIGHT;
+}

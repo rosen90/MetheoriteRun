@@ -6,7 +6,6 @@
  */
 
 #include "CollisionManager.h"
-
 #include "../Contracts/IColidable.h"
 
 namespace Managers {

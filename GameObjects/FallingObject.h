@@ -20,6 +20,7 @@ public:
 	virtual ~FallingObject();
 	virtual void Draw(SDL_Renderer* renderer);
 	virtual void OnDestroy() override;
+	virtual void Collide(IColidable*) override;
 
 private:
 	static const int MAX_SPRITE_COUNT = 15;

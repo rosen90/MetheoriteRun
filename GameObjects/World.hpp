@@ -16,6 +16,11 @@ Contracts::IGenericManager<T>* GameObjects::World::GetManager()
 template<class T>
 inline void GameObjects::World::AddClient(
 		ContractImplementations::GenericManager<T>* client) {
-	client->AddClient(this);
+	T casted = dynamic_cast<T>(this);
+	if( casted != NULL)
+	{
+		client->AddClient(casted);
+	}
+
 	ContractImplementations::GenericManager<Contracts::IManager*>::AddClient(client);
 }

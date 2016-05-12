@@ -6,7 +6,7 @@
 const int Character::CHARACTER_ANIMATION = 8;
 const int Character::CLIP_HEIGHT = 140;
 const int Character::CLIP_WIDTH = 108;
-const int Character::CHAR_HEALTH = 2;
+const int Character::CHAR_HEALTH = INFINITY;
 const int Character::CHAR_POWER = 1;
 
 const std::string Character::LOAD_PATH = "Data/Images/playerSprite.png";

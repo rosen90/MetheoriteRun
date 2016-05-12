@@ -8,7 +8,7 @@
 #ifndef WORLD_H_
 #define WORLD_H_
 
-#include "ControlableGameObject.h"
+#include "MovableGameObject.h"
 #include "../ContractImplementation/GenericManager.h"
 
 namespace Contracts{
@@ -18,7 +18,7 @@ namespace Contracts{
 namespace GameObjects {
 
 class World
-	: public ControlableGameObject,
+	: public MovableGameObject,
 	  public ContractImplementations::GenericManager<Contracts::IManager*>
 {
 public:
@@ -31,20 +31,24 @@ public:
 
 	template<class T>
 	void AddClient(ContractImplementations::GenericManager<T>* client);
+	static int GetScreenWidth();
+	static int GetScreenHeight();
 
 	static World* GetInstance();
 
 private:
 	World();
 	static World* Instance;
-	static const int FPS = 60;
+	static const int FPS = 45;
 	unsigned currentFrame;
 	bool quit;
 
 	virtual bool CheckCollision(IColidable* other) override;
 	virtual void Draw(SDL_Renderer* renderer) override;
 	virtual void Collide(IColidable* other) override;
-	virtual void HandleKey(SDL_Event* e) override;
+	virtual void Move() override;
+
+
 };
 #include "World.hpp"
 } /* namespace GameObjects */

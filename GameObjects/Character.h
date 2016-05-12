@@ -26,7 +26,7 @@ private:
 	int jumpFrame;
 
 	unsigned currentFrame;
-	static const int FPS = 24;
+	static const int FPS = 45;
 };
 
 #endif /* CHARACTER_H_ */
